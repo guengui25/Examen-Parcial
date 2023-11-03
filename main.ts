@@ -42,6 +42,7 @@ if (!MONGO_URL) {
   Deno.exit(1);
 }
 
+
 //=======================================================================================================
 //  MONGOOSE
 //=======================================================================================================
@@ -77,13 +78,16 @@ try {
 
 // import xxx from "./resolvers/xxx.ts";
 
-import post_plantilla from "./resolvers/POST.ts";
+import post_contacto from "./resolvers/post_contacto.ts";
 
-import get_plantilla from "./resolvers/GET.ts";
+import put_contacto from "./resolvers/put_contacto.ts";
 
-import put_plantilla from "./resolvers/PUT.TS";
+import delete_contacto from "./resolvers/delete_contacto.ts";
 
-import delete_plantilla from "./resolvers/DELETE.ts";
+import get_contactos from "./resolvers/get_contactos.ts";
+
+import get_contacto_dni from "./resolvers/get_contacto_dni.ts";
+
 
 //=======================================================================================================
 //  ENDPOINTS
@@ -91,22 +95,15 @@ import delete_plantilla from "./resolvers/DELETE.ts";
 
 app
 
-.get("/get_plantilla/:dni", get_plantilla) // GET = Obtener X  -> Navegador/Postman
+.post("/api/contactos", post_contacto) // POST = Nuevo X  -> POSTMAN -> Body -> raw -> JSON
 
-.post("/post_plantilla", post_plantilla) // POST = Nuevo X  -> POSTMAN -> Body -> raw -> JSON
+.put("/api/contactos/:dni", put_contacto) // PUT = Actualizar X -> POSTMAN -> Body -> raw -> JSON
 
-.put("/update_plantilla/:dni", put_plantilla) // PUT = Actualizar X -> POSTMAN -> Body -> raw -> JSON
+.delete("/api/contactos/:dni", delete_contacto) // DELETE = Borrar X -> Navegador/Postman
 
-.delete("/delete_plantilla/:dni", delete_plantilla); // DELETE = Borrar X -> Navegador/Postman
+.get("/api/contactos", get_contactos) // GET = Obtener X  -> Navegador/Postman
 
-//=======================================================================================================
-// ENDPOINT CON API-FETCH -> OBTENER DATOS DE UNA API (En el ejemplo, la API de Rick and Morty)
-//=======================================================================================================
-
-import getCharacter from "./API-FETCH/Rick_Morty.ts";
-
-app.get("/character/:id", getCharacter);
-
+.get("/api/contactos/:dni",get_contacto_dni); // GET = Obtener X  -> Navegador/Postman
 
 //=======================================================================================================
 //  SERVER LISTENING

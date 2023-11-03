@@ -1,10 +1,9 @@
 //Creo y exporto los tipos de datos que voy a usar
 
-export type plantilla_tipo = {
-    name: string;
-    dni: string;
-    age: number;
-    amigos: string[];
-    id: string;
-  };
-  
+export type contacto = {
+    dni: string;  
+    name_surname: string;
+    email: string;
+    postal_code: number;
+    iso_code: string;
+};

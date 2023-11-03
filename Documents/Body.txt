@@ -1,7 +1,0 @@
-Ejemplo body para un post/put de persona
-{
-  "name": "Nombre de la persona",
-  "dni": "Número de DNI",
-  "age": 30,
-  "amigos": ["Amigo1", "Amigo2", "Amigo3"]
-}

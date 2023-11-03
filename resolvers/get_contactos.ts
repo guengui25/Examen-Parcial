@@ -11,30 +11,27 @@ import { Request, Response } from "npm:express@4.18.2"; // importo los tipos de 
 
 // import xxx from "./db/xxx.ts";
 
-import PlantillaModel from "../db/ejemplo.ts";  // Importo el modelo de la base de datos
+import ContactoModel from "../db/contacto.ts";  // Importo el modelo de la base de datos
                                                 // PlantillaModelType es el tipo de dato que devuelve el import
 
-const get_plantilla = async (req: Request, res: Response) => { // async es para que la funcion sea asincrona
+const get_contactos = async (req: Request, res: Response) => { // async es para que la funcion sea asincrona
   
     try {
-    const { dni } = req.params; // Obtengo el dni de los parametros de la peticion
+    const contactos = await ContactoModel.find().exec();
 
-    const X = await PlantillaModel.findOne({ dni }).exec(); // Busco el dni de X en la base de datos
+    if (!contactos) { // Si no existe X con ese dni, devuelvo un error
 
-    if (!X) { // Si no existe X con ese dni, devuelvo un error
-
-      res.status(404).send("X not found"); // Devuelvo un error
+      res.status(404).send("Contactos not found - EMPTY"); // Devuelvo un error
 
       return; // Corto la ejecucion de la funcion
     }
 
-    res.status(200).send({ // Si existe X con ese dni, devuelvo X
-      dni: X.dni,
-      name: X.name,
-      age: X.age,
-      amigos: X.amigos,
-      id: X._id.toString(),
-    });
+    // Filtro la información
+    const nombre_dni = contactos.map(elem => {
+      return {nombre:elem.name_surname,dni:elem.dni};
+    })
+
+    res.status(200).send(nombre_dni); //Devuelvo el array
 
     } catch (error) {
 
@@ -44,4 +41,4 @@ const get_plantilla = async (req: Request, res: Response) => { // async es para 
     }
 };
 
-export default get_plantilla; // Exporto la funcion
+export default get_contactos; // Exporto la funcion
