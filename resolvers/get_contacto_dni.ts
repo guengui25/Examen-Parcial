@@ -14,7 +14,6 @@ import hora_meteo from "../fetch/hora_meteo.ts";
 // import xxx from "./db/xxx.ts";
 
 import ContactoModel from "../db/contacto.ts";  // Importo el modelo de la base de datos
-import hora_meteo from "../fetch/hora_meteo.ts";
                                                 // PlantillaModelType es el tipo de dato que devuelve el import
                                                 
 const get_contacto_dni = async (req: Request, res: Response) => { // async es para que la funcion sea asincrona
