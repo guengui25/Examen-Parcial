@@ -31,7 +31,8 @@ const get_contacto_dni = async (req: Request, res: Response) => { // async es pa
       return; // Corto la ejecucion de la funcion
     }
 
-    const hora_meteo = hora_meteo(req,res,contacto)
+    const hora = (await hora_meteo(req,res,contacto))?.hora;
+    const meteorologia = (await hora_meteo(req,res,contacto))?.meteorologia;
 
     // Devuelvo los datos del personaje y losnombres de los episodios
 
@@ -44,7 +45,7 @@ const get_contacto_dni = async (req: Request, res: Response) => { // async es pa
       ciudad: contacto.ciudad,
       pais: contacto.pais ,
       hora: contacto.hora ,
-      meteorologia: detalles.meteorologia,
+      meteorologia: meteorologia,
     });
 
     } catch (error) {
