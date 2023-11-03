@@ -23,7 +23,6 @@ const put_contacto = async (req: Request, res: Response) => {
         res.status(500).send("name_surname,email,postal_code and iso_code are required"); // Devuelvo un error
 
         return; // Corto la ejecucion de la funcion
-
     }
 
     const updatedContacto = await ContactoModel.findOneAndUpdate( // Actualizo la persona con el dni dado
@@ -48,7 +47,7 @@ const put_contacto = async (req: Request, res: Response) => {
       email: updatedContacto.email,
       postal_code: updatedContacto.postal_code,
       iso_code: updatedContacto.iso_code,
-      id: updatedContacto._id.toString()
+      //id: updatedContacto._id.toString()
     });
 
     } catch (error) {
