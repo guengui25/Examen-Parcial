@@ -1,3 +1,7 @@
+# DENO DEPLOY
+
+https://examen-parcial-72mxqc6jgqrw.deno.dev/
+
 # Examen Parcial
 
 - Se debe grabar la pantalla en durante todo el examen en el grupo personal del Campus Virtual
