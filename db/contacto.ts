@@ -11,6 +11,8 @@ const ContactoSchema = new Schema(
     email: { type: String, required: true },
     postal_code: { type: Number, required: true },
     iso_code: { type: String, required: true },
+    ciudad: { type: String, required: true },
+    pais: { type: String, required: true }
   },
   { timestamps: true }
   //Agrega dos campos a cada documento: "createdAt" y "updatedAt". 

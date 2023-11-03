@@ -6,6 +6,10 @@
 // @deno-types="npm:@types/express"
 import { Request, Response } from "npm:express@4.18.2"; // importo los tipos de express Request y Response
 
+import {contacto} from "../types.ts";
+
+import detalles_contacto from "../fetch/detalles_contacto.ts";
+
 //Importo los modelos de la base de datos
 
 // import xxx from "./db/xxx.ts";
@@ -25,10 +29,15 @@ const put_contacto = async (req: Request, res: Response) => {
         return; // Corto la ejecucion de la funcion
     }
 
+    const contacto:contacto = {dni:dni,name_surname:name_surname,email:email,postal_code:postal_code,iso_code:iso_code};
+
+    const detalles_ciudad = (await detalles_contacto(req,res,contacto))?.ciudad;
+    const detalles_pais = (await detalles_contacto(req,res,contacto))?.pais;
+
     const updatedContacto = await ContactoModel.findOneAndUpdate( // Actualizo la persona con el dni dado
       { dni }, // Busco la persona con el dni dado
 
-      { name_surname, email , postal_code,iso_code}, // Actualizo los datos de la persona con los datos del body de la peticion
+      { name_surname, email , postal_code,iso_code,detalles_ciudad,detalles_pais}, // Actualizo los datos de la persona con los datos del body de la peticion
 
       { new: true } // Con new: true, devuelvo la persona actualizada
 
